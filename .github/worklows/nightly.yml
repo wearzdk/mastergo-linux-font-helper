@@ -1,0 +1,39 @@
+name: 最新版
+
+on: [push]
+
+jobs:
+  build:
+    name: Build binary CI
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # build and publish in parallel: linux/386, linux/amd64, windows/386, windows/amd64, darwin/amd64, darwin/arm64
+        goos: [linux]
+        goarch: ["386", amd64, arm64]
+      fail-fast: true
+    steps:
+      - uses: actions/checkout@master
+      - name: Setup Go environment
+        uses: actions/setup-go@master
+        with:
+          go-version: "1.20"
+      - name: Cache downloaded module
+        uses: actions/cache@master
+        with:
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ matrix.goos }}-${{ matrix.goarch }}-${{ hashFiles('**/go.sum') }}
+      - name: Build binary file
+        env:
+          GOOS: ${{ matrix.goos }}
+          GOARCH: ${{ matrix.goarch }}
+        run: |
+          cd hack
+          bash releaser.sh
+      - name: Upload artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: mastergo-font-${{ matrix.goos }}-${{ matrix.goarch }}.tar.gz
+          path: output/mastergo-font-${{ matrix.goos }}-${{ matrix.goarch }}.tar.gz
