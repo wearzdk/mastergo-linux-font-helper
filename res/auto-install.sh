@@ -2,7 +2,7 @@
 
 echo -e "\n\n"
 
-local arch=$(uname -m);
+arch=$(uname -m);
 if [ "$arch" == "x86_64" ]; then
   arch="amd64";
 elif [ "$arch" == "i386" ]; then
@@ -35,7 +35,7 @@ install() {
   cd /tmp;
   tar -xzf "$file";
   cd ./mastergo-font-linux-${arch};
-  sudo ./install.sh;
+  bash install.sh;
 }
 
 download;

@@ -1,11 +1,10 @@
 [Unit]
 Description=Font Helper for MasterGo
-After=systemd-user-sessions.service
 
 [Service]
 Type=simple
-ExecStart=$HOME/.local/bin/mastergo-font
+ExecStart=%h/.local/bin/mastergo-font-linux
 Restart=on-failure
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target

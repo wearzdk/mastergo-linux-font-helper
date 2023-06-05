@@ -16,11 +16,12 @@ go build -o ./mastergo-font-${GOOS}-${GOARCH} -trimpath -ldflags="-s -w" ../main
 mkdir -p ../output
 
 cp ../res/install.sh ./install.sh
+cp ../res/uninstall.sh ./uninstall.sh
 cp ../res/mastergo-font.service ./mastergo-font.service
 
 
 # 打包
-tar -czf ../output/mastergo-font-${GOOS}-${GOARCH}.tar.gz ./mastergo-font-${GOOS}-${GOARCH} ./install.sh ./mastergo-font.service
+tar -czf ../output/mastergo-font-${GOOS}-${GOARCH}.tar.gz ./mastergo-font-${GOOS}-${GOARCH} ./install.sh ./mastergo-font.service ./uninstall.sh
 
 rm ./install.sh
 rm ./mastergo-font.service
