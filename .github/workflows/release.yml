@@ -1,0 +1,42 @@
+name: 发行版
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  release:
+    name: Build And Release
+    runs-on: ubuntu-latest
+
+    steps:
+      # ...
+      - uses: actions/checkout@master
+      - name: Setup Go environment
+        uses: actions/setup-go@master
+        with:
+          go-version: "1.20"
+      - name: Cache go module
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/go/pkg/mod
+            ~/.cache/go-build
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
+      - name: Build binary file
+        run: |
+          cd hack
+          bash release.sh
+
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: true
+          automatic_release_tag: "latest"
+          title: "Test Release"
+          files: |
+            ./output/*
+        id: "automatic_releases"
