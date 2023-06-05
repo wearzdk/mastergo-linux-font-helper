@@ -1,7 +1,8 @@
-# MasterGo Linux字体插件
+# MasterGo Linux 字体插件
+
 ## 特性
 
-适用于Linux系统的MasterGo本地字体插件。
+适用于 Linux 系统的 MasterGo 本地字体插件。
 
 已实现的功能：
 
@@ -12,7 +13,7 @@
 
 目前暂不支持字体预览，具体效果如下
 
-<img src="/media/zskks/数据/项目库/开源项目/mastergo-font-linux/mastergo-font-linux/README.assets/image-20230605140720645.png" alt="image-20230605140720645" style="float:left;" />
+<img src="./res/image-20230605140720645.png" style="float:left;" />
 
 ## 安装
 
@@ -26,7 +27,7 @@
 
 在 Linux 系统下，鼠标中键通常用于快速粘贴。尽管这个功能十分便捷，但是在 MasterGo 设计软件等特定软件上，可能会出现冲突。
 
-要解决这个问题，可以使用这个油猴脚本
+要解决这个问题，可以使用[这个](https://github.com/zskzskabcd/middle-button-no-paste)油猴脚本
 
 ## License
 
