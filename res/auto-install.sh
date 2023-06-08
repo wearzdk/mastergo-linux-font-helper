@@ -15,26 +15,26 @@ else
 fi
 
 get_latest_release() {
-  curl -Ls --silent "https://github.com/zskzskabcd/mastergo-linux-font-helper/releases/latest" | perl -ne 'print "$1\n" if /v([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,4})/' | head -1;
+  curl -Ls --silent "https://github.com/zskzskabcd/mastergo-linux-font-helper/releases/latest" | perl -ne 'print "$1\n" if /v([0-9]{1,3}\.[0-9]{1,3})/' | head -1;
 }
 
 get_latest_release_link_download() {
   local latest=$(get_latest_release);
-  echo "http://github.com/zskzskabcd/mastergo-linux-font-helper/releases/download/v${latest}/mastergo-font-linux-${arch}.tar.gz";
+  echo "https://github.com/zskzskabcd/mastergo-linux-font-helper/releases/download/v${latest}/mastergo-font-linux-${arch}.tar.gz";
 }
 
 download() {
   local link=$(get_latest_release_link_download);
-  cd /tmp;
+  mkdir /tmp/mastergo-font-linux-amd64-install;
+  cd /tmp/mastergo-font-linux-amd64-install;
   rm -rf ./mastergo-font-linux*;
   wget "$link";
 }
 
 install() {
   local file="mastergo-font-linux-${arch}.tar.gz";
-  cd /tmp;
-  tar -xzf "$file";
-  cd ./mastergo-font-linux-${arch};
+  cd /tmp/mastergo-font-linux-amd64-install;
+  tar -xzvf "$file";
   bash install.sh;
 }
 

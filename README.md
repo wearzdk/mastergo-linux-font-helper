@@ -17,6 +17,16 @@
 
 ## 安装
 
+### 一键安装
+
+可以使用自动安装脚本一键安装
+
+```bash
+curl https://raw.githubusercontent.com/zskzskabcd/mastergo-linux-font-helper/main/res/auto-install.sh | bash
+```
+
+### 手动安装
+
 前往[Releases](https://github.com/zskzskabcd/mastergo-linux-font-helper/releases)页面，下载最新版本
 
 解压文件，通过终端打开目录，运行 `./install.sh` 命令，即可完成 MasterGo Linux 字体插件的安装。
